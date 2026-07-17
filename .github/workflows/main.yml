@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Publicar Markdown en Confluence
-        uses: axro-gmbh/markdown-to-confluence-sync@v1.4
+        uses: cloudbees-io/confluence-markdown-sync-action@v1
         with:
-          input_directory: ./docs
-          cloud: "cemssa"
+          confluence_url: "https://atlassian.net"
+          confluence_email: ${{ secrets.CONFLUENCE_EMAIL }}
+          confluence_api_token: ${{ secrets.CONFLUENCE_API_TOKEN }}
           space_key: "cemssa"
           parent_page_id: "1966084"
-          user: ${{ secrets.CONFLUENCE_EMAIL }}
-          token: ${{ secrets.CONFLUENCE_API_TOKEN }}
+          markdown_dir: "./docs"
