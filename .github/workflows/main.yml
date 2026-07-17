@@ -1,0 +1,23 @@
+name: Desplegar Documentación a Confluence v2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Publicar Markdown en Confluence
+        uses: cloudbees-io/confluence-markdown-sync-action@v1
+        with:
+          confluence_url: "https://atlassian.net"
+          confluence_email: ${{ secrets.CONFLUENCE_EMAIL }}
+          confluence_api_token: ${{ secrets.CONFLUENCE_API_TOKEN }}
+          space_key: "cemssa"
+          parent_page_id: "1966084"
+          markdown_dir: "./docs"
